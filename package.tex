@@ -1,0 +1,85 @@
+\makeatletter
+\renewcommand\section{\@startsection{section}{2}{\z@}%
+	{1.5ex \@plus1ex \@minus.2ex}%
+	{.1ex \@plus.1ex}%
+	{\normalfont\normalsize\bfseries}}								%% 以上4行，定义让section后自动断行
+\makeatother
+
+	\renewcommand{\chaptermark}[1]{\markboth{第 \thechapter\ 章\quad #1}{}}
+	\CTEXsetup[name={第~,~章}, nameformat={\bfseries \fangsong \zihao{4}}, titleformat={\bfseries \fangsong \zihao{4}}, number={\arabic{chapter}}]{chapter}%一级标题四号仿宋
+	\CTEXsetup[beforeskip={0pt}, afterskip={20pt}]{chapter}	%章的前后行距
+	
+	\CTEXsetup[format={\heiti \zihao{-4}}]{section}	%二级标题四号黑体
+%	\CTEXsetup[beforeskip={2ex plus .5ex minus .2sex}, afterskip={0ex plus .2ex}]{section}
+	
+%	\CTEXsetup[format={\fangsong \zihao{-4}}]{subsection}%三级标题小四号黑体
+	%\captionwidth{0.8\textwidth}
+	%\changecaptionwidth
+	\CTEXoptions[contentsname={\normalfont \heiti \zihao{4}目\quad 录}, figurename={图}, tablename={表}, bibname={\zihao{-4} \normalfont \heiti 参考文献}]
+	
+\usepackage[titles]{tocloft}
+	\renewcommand{\cftdot}{$\cdot$}
+	\renewcommand{\cftdotsep}{1.5}
+	\setlength{\cftbeforechapskip}{10pt}
+	\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+	\renewcommand{\cftchapdotsep}{\cftdotsep}
+	\makeatletter
+	\renewcommand{\numberline}[1]{%
+		\settowidth\@tempdimb{#1\hspace{0.5em}}%
+		\ifdim\@tempdima<\@tempdimb%
+		\@tempdima=\@tempdimb%
+		\fi%
+		\hb@xt@\@tempdima{\@cftbsnum #1\@cftasnum\hfil}\@cftasnumb}		%% 防止目录里章节号和章节名重叠
+	\makeatother
+	
+\usepackage{amsmath}	%[fleqn]可以公式不居中
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[paper=a4paper, top=25 mm, bottom=20mm, left=25 mm, right=30mm, head=5 mm, headsep=2.5 mm, foot=5 mm]{geometry}
+\usepackage{tabularx}
+\usepackage{txfonts}
+\usepackage{booktabs} % 三线表
+\usepackage{multirow} % 多列
+\usepackage{fancyhdr}    % 页眉页脚
+\usepackage[numbers,sort&compress]{natbib}
+	\setlength{\bibsep}{0ex}  % vertical spacing between references
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+	%1方式，线型
+	\floatstyle{ruled}
+	%2环境、浮动方式、包含文件（类似toc，lof，lot）
+	\newfloat{algorithm}{htbp}{loa}[chapter]
+	%3 目录名称,类似-->\renewcommand*{\lstlistlistingname}{程~序}
+	\floatname{algorithm}{算~法} %环境名，使用方法\begin{algorithm}caption{}.......\end{algorithm}
+
+\usepackage{caption}  % 标题
+	\renewcommand\captionfont{\zihao{-5} \heiti}
+	\captionsetup{labelsep=space}
+	\captionsetup{justification=centering}
+%	\captionsetup[figure]{options}
+%	\captionsetup{labelsep=colon}
+	\setlength{\abovecaptionskip}{6pt}
+	\setlength{\belowcaptionskip}{-10pt}
+	
+% Windows	\newCJKfontfamily\fzyt{FZYaoTi}
+% Mac \newCJKfontfamily\fzyt{FZYTK--GBK1-0}
+	\newCJKfontfamily\fzyt{FZYTK--GBK1-0}
+
+%后面有了	\setmainfont{Times New Roman}
+
+\usepackage{enumitem}
+	\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+	\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+	\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+
+		
+	\pagestyle{plain}
+
+	
+	\newcommand{\dif}{\mathop{}\!\mathrm{d}} 
+
+\usepackage{microtype}	%	microtype 宏包可以改善了单词、字母的间距。它可能做了很多，但是大部分人察觉不到使用它之后文档的变化。但至少，加载了 microtype 之后，文档看起来更好，也更容易阅读。注意：如果有使用到字体宏包，需要将 microtype 宏包放在它们的后面，因为这个宏包对单词、字母的调整和字体是有关的。
+
+\usepackage{siunitx}	%	siunitx 宏包大大简化了写作科技文的 TeX 命令，科技文写作中很大一部分是单位、数字。这个宏包添加了一些命令，比如 \num命令可以输出我们想要的各种方式的数字形式（比如科学记数法），而 \si 命令用来输出单位。我经常用到的命令是 \SI 和 \SIrange。比如 \SI{10}{\hertz} 输出为 “10Hz”（这能有效避免输入错误，我可能会写成 HZ 或者 hz 而不是 Hz）。\SIrange 命令多一个参数：\SIrange{10}{100}{\hertz} 输出为 “10Hz to 100Hz”。

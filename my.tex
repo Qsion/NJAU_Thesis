@@ -1,0 +1,42 @@
+% XeLaTeX编译，编译参考文献引用等需两次编译。
+\documentclass[openright,oneside]{ctexbook}	% 加[draft]选项可不显示图片本体，加快编译，全文完成后再删除
+\input{package.tex}
+
+\begin{document}
+	
+	\makeatletter
+	\def\@cite#1#2{\textsuperscript{[{#1\if@tempswa , #2\fi}]}}				%% 以上2行 - 把引用改上标；
+	\makeatother
+
+\input{cover}
+
+\vspace{2\baselineskip}
+
+{\renewcommand\baselinestretch{1}\selectfont
+\tableofcontents \par } \pagenumbering{Roman}	\addcontentsline{toc}{chapter}{目录}	\clearpage
+
+\input{abstract} 
+
+\zihao{-4} \songti	
+
+\input{Chap1} 
+
+%\input{Chap2} 
+
+%\input{Chap3} 
+
+%\input{Chap4} 
+
+\addcontentsline{toc}{chapter}{参考文献}
+\zihao{5}
+%\bibliographystyle{gbt7714-2005}
+%\bibliography{my.bib}
+
+%完成后再改成thebib...
+\begin{thebibliography}{99}
+\bibitem{ck1} Crosby M J, Karnopp D C. System for controlling the transmission of energy between spaced members: U.S. Patent 3,807,678[P]. 1974-4-30.
+\bibitem{ck2} Crosby M J, Karnopp D C. System for controlling the transmission of energy between spaced members: U.S. Patent 3,807,678[P]. 1974-4-30.
+\bibitem{ck3} Crosby M J, Karnopp D C. System for controlling the transmission of energy between spaced members: U.S. Patent 3,807,678[P]. 1974-4-30.
+\end{thebibliography}
+
+\end{document}
